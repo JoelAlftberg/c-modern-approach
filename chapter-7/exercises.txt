@@ -1,0 +1,17 @@
+1 a) 55
+  b) 70 + 42 + 7 = 112 + 7  = 119
+  c) 12 + (11 * 16) + 2560 = 12 + 176 + 2560 = 183 + 2560 = 2748
+
+2 a) floating point
+  b) floating point
+  c) illegal (9 can't be present in octal)
+  d) illegal (underscore in int)
+  e) floating point
+
+3 b) short float
+
+4) d) since it's not a string
+
+5) 0b10000001, although correct in binary, not allowed in C
+
+6)
