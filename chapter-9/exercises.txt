@@ -135,3 +135,91 @@ float compute_GPA(char grades[], int n){
   return sum / n;
 }
 12)
+double inner_product(double a[], double b[], int n){
+  double sum = 0;
+  for(int i = 0; i < n; i++){
+    sum += a[i] * b[i]
+  }
+  return sum;
+}
+13)
+int evaluate_position(char board[8][8]){
+
+  int black = 0, white = 0;
+
+  for(int i = 0; i < 8; i++){
+    for(int j = 0; j < 8; i++)
+      switch(piece){
+        case 'Q': 
+          white += 9;
+        case 'R': 
+          white += 5;
+        case 'B':
+          white += 3;
+        case 'N':
+          white += 3; 
+        case 'P':
+          white += 1;
+        case 'q': 
+          black += 9;
+        case 'r': 
+          black += 5;
+        case 'b':
+          black += 3;
+        case 'n':
+          black += 3; 
+        case 'p':
+          black += 1;
+      }
+  }
+
+  return black > white ? black - white : white - black;
+  
+}
+14) will return false immediately after finding a value that is not zero, which means it won't progress further to find if there are later values that are zero
+15)
+double median(double x, double y, double z){
+  double median = 0;
+  if (x <= y){
+    if (y <= z){
+      median = y;
+    }
+    else if (x <= <){
+      median = z;
+    }
+    else{
+      median = x;
+    }
+  }
+  else if (z <= y){
+    median = y;
+  }
+  else if (x <= z){
+    median = x;
+  }
+  return median;
+}
+16)
+int fact(int n){
+  return n <= 1 ? 1 : n * fact(n - 1); 
+}
+17)
+int fact(int n){
+  result = 1;
+  for(int i = 0; i < n; i++){
+    result *= (n - i)
+  }
+}
+18)
+int gcd(int m, int n){
+  if (n == 0){
+    return m;
+  }
+  else{
+    gcd(n, m % n);
+  }
+}
+19)
+prints the binary representation of the integer n
+
+
