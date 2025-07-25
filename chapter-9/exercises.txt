@@ -1,0 +1,137 @@
+1) double product should be inside the function body, height should be double height instead
+2)  int check(int x, int y, int n){
+    if( x < 0 || y < 0 || x > n-1 || y > n -1){
+    return 1;
+    }
+    return 0;
+    }
+
+3)  
+int gcd(int n, int m){
+  int remainder;
+  while( n > 0){
+    remainder =  m % n;
+    m = n;
+    n = remainder;
+  }
+  return m;
+}
+
+4)
+int day_of_year(int month, int day, int year){
+
+  for(int i = 1; i != month; i++){
+
+    switch(i){
+      case 1: case 3: case 5: case 7: case 8: case 10: case 12:{
+        day += 31;
+        break;
+      }
+      case 4: case 6: case 9: case 11:{
+        day += 30;
+        break;
+      }
+      case 2:{
+        if (year % 4 && (year % 400 && year % 100)){
+          day += 28;
+          break;
+        }
+        else{
+          day += 29;
+          break;
+        }
+      }
+    }
+
+  }
+
+  return day;
+}
+
+5)
+int num_digits(int n){
+  int num = 0;
+  for (; n > 0; num++){
+    n /= 10;
+  }
+
+  return num;
+}
+
+6)
+int digit(int n, int k){
+  while (k-- > 1){
+    if ( n / 10 <= 0 )
+      return 0;
+    n /= 10;
+  }
+  return n % 10;
+}
+
+7) all statements are legal but integer promotions will occur
+
+8) a), b) are valid. c) contains no type for the parameter and d) no type for the function
+
+9) i = 1, j = 2. this is because we are passing a value and not a reference to swap(); also it's void and we don't return anything that could be assigned from it.
+
+10)
+
+a)
+int largest(int a[], int n){
+  int high = a[0];
+
+  for(int i = 1; i < n; i++){
+    if(a[i] > high)
+      high = a[i]
+  }
+
+  return high;
+}
+b)
+double average(int a[], int n){
+  int sum = 0;
+
+  for(int i = 0; i < n; i++){
+    sum += a[i]
+  }
+  return sum / n;
+
+}
+c)
+int largest(int a[], int n){
+  int count = 0;
+
+  for(int i = 0; i < n; i++){
+    if(a[i] > 0)
+      count++;
+  }
+
+  return count;
+}
+
+11)
+float compute_GPA(char grades[], int n){
+  int i = 0;
+  float sum = 0;
+  while(i++ < n){
+    switch(toupper(grades[i])){
+      case 'D':
+        sum += 1;
+        break;
+      case 'C':
+        sum += 2;
+        break;
+      case 'B':
+        sum += 3;
+        break;
+      case 'A':
+        sum += 4;
+        break;
+      default:
+        break;
+    }
+  }
+
+  return sum / n;
+}
+12)
