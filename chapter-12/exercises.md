@@ -3,7 +3,7 @@
   b) 34\
   c) 4\
   d) true\
-  e) false\
+  e) false
 
 2) 
 >pointers can't be added, it will give a compiler error
@@ -12,11 +12,13 @@ but if we subtract pointers we will get the "distance" between them ex.
   int* low = &a[0];
   low: 0x7ffdc06abb50, high: 0x7ffdc06abb64, high - low: 5
 the distance is 5 elements between a[5] and a[0]
-so correct would be `middle = low + (high - low) / 2;`
+so correct would be:\
+ `middle = low + (high - low) / 2;`
 3)
 >So we have pointers p and q pointing to the first and last elements of the integer array a respectively.
 We derefence p and q and make the value swap places, storing *p in the integer temp.
-Since we increment p and decrement q we will meet halfway through the array. This means the first 5 values are swapped with the last 5, giving us the result `a[N] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+Since we increment p and decrement q we will meet halfway through the array. This means the first 5 values are swapped with the last 5, giving us the result\
+ `a[N] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};`
 4)
 ```
 void make_empty(void){
@@ -93,7 +95,7 @@ int *find_middle(int a[], int n){
 ```
 11)
 ```
-int find_largest(const int a[], int n){
+int find_largest(int a[], int n){
   int *p;
   int largest = *p++;
 
@@ -124,5 +126,84 @@ void find_two_targets(const int a[], int n, int *largest, int *second_largest){
     }
   }
 
+}
+```
+13)
+```
+void init_ident(int n, double ident[n][n]){
+  double (*p)[n];
+  int i = 0;
+  for(p = &ident[0]; p < &ident[n]; p++){
+    (*p)[i] = 1;
+    i++;
+  }
+}
+```
+14)
+```
+int temperatures[7][24];
+search(temperatures, 7 * 24, 32);
+```
+>this works because temperatures decays to a pointer to the first element, and since a 2d array in memory is laid out the same way as a 1d array of length a * b where a and b are the rows and columns of the 2d array **array[a][b]**
+15)
+```
+for(p = temperatures[i]; p < temperatures[i+1]; p++){
+  printf("%d ", *p);
+}
+```
+>this works because since temperatures is a 2D-array *temperatures[i]* will decay to a pointer of the first element in the row. This **would not** work for a 1D array.\
+The expression *temperatures[i+1]* will decay to a pointer pointing at the first element of the next row
+16)
+```
+for(i = 0; i < 7; i++){
+    int highest = find_largest(temperatures[i], 24);
+    printf("day %d high: %d degrees\n", i+1, highest);
+}
+```
+>using the fact here again that *temperatures[i]* will decay to a pointer to the first element of the row so that the function *find_largest* can treat it as a 1D-array
+17)
+```
+int sum_two_dimensional_array(int a[][LEN], int n){
+  int *p = a[0]; // first element &a[0][0]
+  int sum = 0;
+
+  while(p < a[0] + n * LEN){
+    sum += *p++;
+  }
+  return sum;
+}
+```
+18)
+```
+int evaluate_position(char board[8][8]){
+  int *p;
+  for(p = board[0]; p < board[0] + 64; p++){
+      switch(piece){
+        case 'Q': 
+          white += 9;
+          break;
+        case 'R': 
+          white += 5;
+        case 'B':
+          white += 3;
+        case 'N':
+          white += 3; 
+        case 'P':
+          white += 1;
+        case 'q': 
+          black += 9;
+        case 'r': 
+          black += 5;
+        case 'b':
+          black += 3;
+        case 'n':
+          black += 3; 
+        case 'p':
+          black += 1;
+      }
+  }
+
+  return black > white ? black - white : white - black;
+  
 }
 ```
