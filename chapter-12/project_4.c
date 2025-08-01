@@ -17,6 +17,7 @@ int main(){
   
   q = message;
 
+  
   while(q <= p) {
     if (*q++ != *--p){
       printf("Not a palindrome");
