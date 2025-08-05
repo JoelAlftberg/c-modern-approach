@@ -94,3 +94,76 @@ int my_strcmp(char *s, char *t){
 }
 ```
 12)
+```
+void get_extension(const char *file_name, char *extension){
+
+  while (*file_name){
+    if (*file_name++ == '.'){
+      strcpy(extension, file_name);
+      return;
+    }
+  }
+  extension = "\0";
+  
+}
+```
+13
+```
+void build_index_url(const char *domain, char *index_url){
+
+  strcpy(index_url, "http://www.");
+  strcat(strcat(index_url, domain), "/index.html");
+  
+}
+```
+14
+>It prints: Grinch\
+The reason for this is that --*p decrements the value that *p points to and not the pointer itself. So each letter gets shifted one position to the left in the alphabet.
+15)
+>a) 0\
+b) 1\
+c) returns the position in string s of the first character that appears in both arrays
+16)
+```
+int count_spaces(const char s[]){
+  int count = 0;
+
+  while(*s++)
+    if (*s == ' ')
+      count++;
+  return count;
+}
+```
+17)
+```
+bool test_extension(const char *file_name, const char *extension){
+
+  while(*file_name++ != '.');
+
+  while(*file_name && *extension){
+    if (toupper(*file_name++) != toupper(*extension++)){
+      return 0;
+    }
+  }
+
+  return 1;
+
+}
+```
+18)
+```
+void remove_filename(char *url){
+
+  char *p = url;
+
+  while(*url){
+    if(*url == '/'){
+      p = url;
+    }
+    url++;
+  }
+
+  *p = '\0';
+
+}
+```
