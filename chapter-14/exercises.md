@@ -107,5 +107,5 @@ error, SQR undefined
 ```
 16)
 ```
-
+IDENT(foo) -> PRAGMA(ident "foo") -> _Pragma("ident foo")
 ```
