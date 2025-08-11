@@ -264,3 +264,68 @@ struct color brighter(struct color c){
   return (struct color) {(c.red * 0.7), (c.green * 0.7), (c.blue * 0.7)};
 }
 ```
+10)
+a)
+```
+int rectangle_area(struct rectangle r){
+
+  return ((r.upper_left.x - r.lower_right.x) *  (r.upper_left.y - r.lower_right.y));
+
+}
+```
+b)
+```
+struct point rectangle_center(struct rectangle r){
+
+  return (struct point) {r.upper_left.x - r.lower_right.x) / 2,  (r.upper_left.y - r.lower_right.y) / 2};
+
+}
+```
+c)
+```
+struct rectangle rectangle_move(struct rectangle r, int x, int y){
+  r.upper_left.x += x;
+  r.upper_left.y += y;
+  r.lower_right.x += x;
+  r.lower_right.y += y;
+
+  return r;
+}
+```
+d)
+```
+bool determine_point_in_rectangle(struct rectangle r, struct point p){
+
+  if (p.x > r.lower_right.x || p.y < r.lower_right.y || p.x < r.upper_left.x || p.y  > r.upper_left.y){
+    return false;
+  } 
+  return true;
+}
+```
+11)
+
+>Simple arithmetics and knowledge that unions allocate space according to their largest member gives us:\
+8 + 8 + 4 = 20\
+Answer: 20 bytes
+12)
+>The struct is the largest type in the union, therefore it will allocate space for the char b[4], double c and int d:\
+4 + 8 + 4 = 16\
+Answer: 16 bytes
+13)
+>a) legal\
+b) legal\
+c) s.rectangle.height = 25;
+d) legal
+e) s.u.circle.radius = 5;
+f) s.u.circle.radius = 5;
+14)
+a)
+```
+```
+b)
+```
+```
+c)
+```
+```
+
