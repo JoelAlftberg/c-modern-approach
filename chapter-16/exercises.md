@@ -321,11 +321,143 @@ f) s.u.circle.radius = 5;
 14)
 a)
 ```
+int compute_area(struct shape s){
+  double PI = 3.14;
+  if (s.shape_kind == CIRCLE){
+    return s.u.circle.radius * s.u.cirlce.radius * pi;
+  }
+  else{
+    return s.u.rectangle.height * s.u.rectangle.width    
+  }
+}
 ```
 b)
 ```
+struct shape move_shape(struct shape s, int x, int y){
+  s.center.x += x;
+  s.center.y += y;
+
+  return s;
+}
 ```
 c)
 ```
+struct shape scale_shape(struct shape s, double c){
+  if (s.shapekind == CIRCLE){
+    s.u.circle.radius *= c;
+  }
+  else{
+    s.u.rectangle.x *= c;
+    s.u.rectangle.y *= c;
+  }
+  return s;
+}
 ```
+15)
+a)
+```
+enum weekdays {
+  MONDAY, TUESDAY, WEDNESDAY, THURSDAY, 
+  FRIDAY, SATURDAY, SUNDAY
+};
+```
+b)
+```
+typedef enum {
+  MONDAY, TUESDAY, WEDNESDAY, THURSDAY, 
+  FRIDAY, SATURDAY, SUNDAY
+} weekdays;
+```
+16)
+>b and d are false
+b since #define statements are global and enums have block scope\
+d since you can assign multiple constants to be the same value
+17)
+>a) is safe, evaluates to b = 1\
+b) is not safe? evaluates to b = undefined? if i = 0 or 1\
+c)b++, undefined if b = 1
+d) safe
+e) safe
+18)
+a)
+```
+typedef enum {
+  EMPTY, PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING
+} Piece;
 
+typedef enum{
+  WHITE, BLACK
+} Color;
+``` 
+b)
+```
+typedef struct {
+  Color color;
+  Piece piece;
+} Square;
+```
+c)
+```
+Square board[8][8];
+```
+d)
+```
+Square board[8][8] =
+{{ROOK, WHITE}, {KNIGHT, WHITE}, {BISHOP, WHITE}, {QUEEN, WHITE}, {KING, WHITE}, {BISHOP, WHITE}, {KNIGHT, WHITE}, {ROOK, WHITE}},
+{{PAWN, WHITE}, {PAWN, WHITE}, {PAWN, WHITE}, {PAWN, WHITE}, {PAWN, WHITE}, {PAWN, WHITE}, {PAWN, WHITE}, {PAWN, WHITE}},
+{{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK}},
+{{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK}},
+{{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK}},
+{{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK},{EMPTY, BLACK}},
+{{PAWN, BLACK}, {PAWN, BLACK}, {PAWN, BLACK}, {PAWN, BLACK}, {PAWN, BLACK}, {PAWN, BLACK}, {PAWN, BLACK}, {PAWN, BLACK}},
+{{ROOK, BLACK}, {KNIGHT, BLACK}, {BISHOP, BLACK}, {QUEEN, BLACK}, {KING, BLACK}, {BISHOP, BLACK}, {KNIGHT, BLACK}, {ROOK, BLACK}};
+```
+19)
+```
+struct pinball_machine {
+  char name[40];
+  int year;
+  enum {EM, SS} type;
+  int players;
+}
+```
+20)
+```
+switch(direction){
+  case NORTH:
+    y++;
+    break;
+  case SOUTH:
+    y--;
+    break;
+  case EAST:
+    x++;
+    break;
+  case WEST:
+    x--;
+    break;
+  default:
+    break;
+}
+```
+21)
+>a) NUL = 0, SOH = 1, STX = 2, ETX = 3\
+b) VT = 11, FF = 12, CR = 13\
+c) SP = 14, SI = 15, DLE = 16, CAN = 25, EM = 26\
+d) ENQ = 45, ACK = 46, BEL = 47, LF = 37, ETB = 38, ESC = 39\
+22)
+a)
+```
+const int piece_value[6] = {200, 9, 5, 3, 3, 1};
+```
+b)
+```
+const int piece_value[6] = {
+  [KING] = 200,
+  [QUEEN] = 9,
+  [ROOK] = 5,
+  [BISHOP] = 3,
+  [KNIGHT] = 3,
+  [PAWN] = 1
+};
+```
