@@ -244,4 +244,26 @@ int sum (int (*f)(int), int start, int end){
 ```
 qsort(&array[50], 50, sizeof(array[0]), compare)
 ```
+18)
+```
+int compare_parts(const void *p, const voide *q){
 
+  return ((struct part *) q)->number - ((struct part *) p)->number;
+}
+```
+19)
+```
+void run_function(char *command){
+
+  struct file_cmd *f = file_cmd;
+
+  while(f->cmd_name != NULL){
+    if (f->cmd_name == command){
+      (f->cmd_pointer)();
+      break;
+    }
+    f++;
+  }
+
+}
+```
