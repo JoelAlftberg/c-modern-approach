@@ -11,13 +11,14 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "line.h"
 
 #define MAX_LINE_LEN 60
 
 struct node{
-  char word[];
   struct node *next_word;
+  char word[];
 } *line = NULL;
 
 int line_len = 0;
@@ -25,9 +26,7 @@ int num_words = 0;
 
 void clear_line(void)
 {
-  line[0] = '\0';
-  line_len = 0;
-  num_words = 0;
+  // maybe set head to start again?
 }
 
 void add_word(const char *word)
@@ -35,9 +34,9 @@ void add_word(const char *word)
   // allocate memory for the node containing the new word, size of the node is the struct + length of the word + 1byte
   struct node *new_word = malloc(sizeof(struct node) + strlen(word + 1));
 
-  struct node **pp = &list;
+  struct node **pp = &li;
 
-  strcpy(new_word->word = word);
+  strcpy(new_word->word, word);
   new_word->next_word = NULL;
 
   /** while the next pointer in the node that the pointer that pp is pointing to is not NULL 
@@ -66,6 +65,7 @@ int space_remaining(void)
 void write_line(void)
 {
   int extra_spaces, spaces_to_insert, i, j;
+  struct node *first_word = line;
 
   extra_spaces = MAX_LINE_LEN - line_len;
   for (i = 0; i < line_len; i++) {
