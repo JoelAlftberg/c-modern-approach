@@ -4,7 +4,7 @@
 #define PUBLIC /* defaults to auto */
 #define PRIVATE static
 
-#define MAX_QUEUE_LENGTH
+#define MAX_QUEUE_LENGTH 100
 
 struct queue_t {
   int head, tail, length;
@@ -13,25 +13,17 @@ struct queue_t {
 
 void queue_append(Queue q, Item i){
   if (q->length < MAX_QUEUE_LENGTH){
-
-    position[q->tail] = i;
-    q->tail = (q->tail + 1 == MAX_QUEUE_LENGTH) ? 0 : q->tail++;
+    q->position[q->tail] = i;
+    q->tail = (q->tail + 1) % MAX_QUEUE_LENGTH;
     q->length++;
-
-  }
-  else{
-    queue_overflow(q);
   }
 
 }
 
 void queue_remove_head(Queue q){
   if (!(queue_is_empty(q))){
-    q->head++;
+    q->head = (q->head + 1) % MAX_QUEUE_LENGTH;
     q->length--;
-  }
-  else{
-    queue_underflow(q);
   }
 }
 
@@ -39,16 +31,10 @@ Item queue_get_head(Queue q){
   if (!(queue_is_empty(q))){
     return q->position[q->head];
   }
-  else{
-    queue_underflow(q);
-  }
 }
 
-ITEM queue_get_tail(Queue q){
+Item queue_get_tail(Queue q){
   if (!(queue_is_empty(q))){
-    return q->position[q->tail];
-  }
-  else{
-    queue_underflow(q);
+    return q->position[(q->tail + MAX_QUEUE_LENGTH - 1) % MAX_QUEUE_LENGTH];
   }
 }
