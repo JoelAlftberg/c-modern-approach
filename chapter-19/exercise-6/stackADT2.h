@@ -7,7 +7,7 @@
  * provided that this copyright notice is retained.      *
  *********************************************************/
 
-/* stackADT.h (Chapter 19, page 496) */
+/* stackADT2.h (Chapter 19, page 498) */
 
 #ifndef STACKADT_H
 #define STACKADT_H
@@ -18,12 +18,13 @@ typedef int Item;
 
 typedef struct stack_type *Stack;
 
-Stack create(void);
+Stack create(int size);
 void destroy(Stack s);
 void make_empty(Stack s);
 bool is_empty(Stack s);
 bool is_full(Stack s);
 void push(Stack s, Item i);
 Item pop(Stack s);
+Item peek(Stack s);
 
 #endif

@@ -7,19 +7,17 @@
  * provided that this copyright notice is retained.      *
  *********************************************************/
 
-/* stackADT3.c (Chapter 19, page 500) */
+/* stackADT.c (Chapter 19, page 495) */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "stackADT.h"
 
-struct node {
-  Item data;
-  struct node *next;
-};
+#define STACK_SIZE 100
 
 struct stack_type {
-  struct node *top;
+  int contents[STACK_SIZE];
+  int top;
 };
 
 static void terminate(const char *message)
@@ -33,54 +31,47 @@ Stack create(void)
   Stack s = malloc(sizeof(struct stack_type));
   if (s == NULL)
     terminate("Error in create: stack could not be created.");
-  s->top = NULL;
+  s->top = 0;
   return s;
 }
 
 void destroy(Stack s)
 {
-  make_empty(s);
   free(s);
 }
 
 void make_empty(Stack s)
 {
-  while (!is_empty(s))
-    pop(s);
+  s->top = 0;
 }
 
 bool is_empty(Stack s)
 {
-  return s->top == NULL;
+  return s->top == 0;
 }
 
 bool is_full(Stack s)
 {
-  return false;
+  return s->top == STACK_SIZE;
 }
 
-void push(Stack s, Item i)
+void push(Stack s, int i)
 {
-  struct node *new_node = malloc(sizeof(struct node));
-  if (new_node == NULL)
+  if (is_full(s))
     terminate("Error in push: stack is full.");
-
-  new_node->data = i;
-  new_node->next = s->top;
-  s->top = new_node;
+  s->contents[s->top++] = i;
 }
 
-Item pop(Stack s)
+int pop(Stack s)
 {
-  struct node *old_top;
-  Item i;
-
   if (is_empty(s))
     terminate("Error in pop: stack is empty.");
+  return s->contents[--s->top];
+}
 
-  old_top = s->top;
-  i = old_top->data;
-  s->top = old_top->next;
-  free(old_top);
-  return i;
+int peek(Stack s){
+  if (is_empty(s)){
+    terminate("Error in peek: stack is empty.");
+  }
+  return s->contents[s->top - 1];
 }

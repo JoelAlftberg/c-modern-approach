@@ -93,3 +93,26 @@ PUBLIC int pop(void)
 ```
 3)
 >See files in folder exercise-3
+4)
+>See files in folder exercise-4
+5)
+```
+#ifndef QUEUE_H
+#define QUEUE_H
+
+#include <stdbool.h>
+
+typedef int Item;
+
+typedef struct queue_t *Queue;
+
+void queue_append(Queue, Item);
+void queue_remove_head(Queue);
+Item queue_head(Queue);
+Item queue_tail(Queue);
+bool queue_is_empty(Queue);
+
+```
+6)
+>See files in folder exercise-6
+
